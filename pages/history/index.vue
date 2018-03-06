@@ -1,5 +1,5 @@
 <template>
-    <section class="container">
+    <section class="container" style="background-color: red;">
         <h1 class="title">
             History
         </h1>
@@ -11,6 +11,10 @@
 
 <script>
 export default {
+    transition (to, from) {
+        if (!from) return 'slide-left'
+        return +to.query.page < +from.query.page ? 'slide-right' : 'slide-left'
+    },
     head () {
         return {
             title: 'History'
@@ -20,7 +24,7 @@ export default {
 </script>
 
 <style scoped>
-.title{
+.title {
     margin: 30px 0;
 }
 </style>
