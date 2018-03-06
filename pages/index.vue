@@ -1,48 +1,48 @@
 <template>
-  <section class="container">
-    <img src="~assets/img/logo.png" alt="Nuxt.js Logo" class="logo" />
-    <h1 class="title">
-      USERS
-    </h1>
-    <ul class="users">
-      <li v-for="(user, index) in users" :key="index" class="user">
-        <nuxt-link :to="{ name: 'id', params: { id: index }}">
-          {{ user.name }}
-        </nuxt-link>
-      </li>
-    </ul>
-  </section>
+    <section class="container wrapper">
+        <h1 class="title">
+            Massy7124's Portfolio
+        </h1>
+        <h2>
+            Full-stack Web Engineer
+        </h2>
+        <nuxt-link class="button" to="/blog">Blog</nuxt-link>
+        <nuxt-link class="button" to="/blog">Blog</nuxt-link>
+        <nuxt-link class="button" to="/history">History</nuxt-link>
+        <nuxt-link class="button" to="/contact">Contact</nuxt-link>
+
+        <a id="profile"></a>
+        <div class="section">
+            <h1>Profile</h1>
+        </div>
+
+    </section>
 </template>
 
 <script>
 import axios from '~/plugins/axios'
 
 export default {
-  async asyncData () {
-    let { data } = await axios.get('/api/users')
-    return { users: data }
-  },
-  head () {
-    return {
-      title: 'Users'
+    async asyncData () {
+        let { data } = await axios.get('/api/blog')
+        return { blog: data }
+    },
+    head () {
+        return {
+            title: 'Blogs'
+        }
     }
-  }
 }
 </script>
 
 <style scoped>
-.title
-{
-  margin: 30px 0;
+.title{
+    margin: 30px 0;
 }
-.users
-{
-  list-style: none;
-  margin: 0;
-  padding: 0;
+.blog{
+    list-style: none;
+    margin: 0;
+    padding: 0;
 }
-.user
-{
-  margin: 10px 0;
-}
+
 </style>

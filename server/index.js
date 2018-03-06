@@ -2,10 +2,17 @@ import express from 'express'
 import { Nuxt, Builder } from 'nuxt'
 
 import api from './api'
+const history = require('connect-history-api-fallback')
 
 const app = express()
 const host = process.env.HOST || '127.0.0.1'
 const port = process.env.PORT || 3000
+
+history({
+    index: '/index'
+})
+// vue-router history
+app.use(history())
 
 app.set('port', port)
 

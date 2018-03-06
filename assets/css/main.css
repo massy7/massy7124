@@ -26,3 +26,15 @@ a, a:hover, a:focus, a:visited
   max-width: 400px;
   max-height: 289px;
 }
+
+.wrapper {
+    min-height: 100%;
+}
+
+.section {
+    margin-top: 40px;
+}
+
+.button {
+    margin: 10px;
+}
