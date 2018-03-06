@@ -2,17 +2,17 @@ import express from 'express'
 import { Nuxt, Builder } from 'nuxt'
 
 import api from './api'
-const history = require('connect-history-api-fallback')
+// const history = require('connect-history-api-fallback')
 
 const app = express()
 const host = process.env.HOST || '127.0.0.1'
 const port = process.env.PORT || 3000
 
-history({
-    index: '/index'
-})
-// vue-router history
-app.use(history())
+// history({
+//     index: '/'
+// })
+// // vue-router history
+// app.use(history())
 
 app.set('port', port)
 
@@ -28,8 +28,8 @@ const nuxt = new Nuxt(config)
 
 // Build only in dev mode
 if (config.dev) {
-  const builder = new Builder(nuxt)
-  builder.build()
+    const builder = new Builder(nuxt)
+    builder.build()
 }
 
 // Give nuxt middleware to express

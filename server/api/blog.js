@@ -6,7 +6,7 @@ const router = Router()
 const blogs = [
     { name: 'Alexandre' },
     { name: 'Pooya' },
-    { name: 'Sébastien' },
+    { name: 'Sébastien' }
 ]
 
 /* GET blogs listing. */

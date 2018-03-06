@@ -1,8 +1,17 @@
 <template>
     <section class="container">
         <h1 class="title">
-            Massy7124's Blog
+            Blog
         </h1>
+
+        <ul class="users">
+            <li v-for="(blog, index) in blogs" :key="index" class="blog">
+                <nuxt-link :to="{ name: 'id', params: { id: index }}">
+                    {{ blog.name }}
+                </nuxt-link>
+            </li>
+        </ul>
+
         <nuxt-link class="button" to="/">
             Top
         </nuxt-link>
@@ -15,7 +24,7 @@ import axios from '~/plugins/axios'
 export default {
     async asyncData () {
         let { data } = await axios.get('/api/blog')
-        return { blog: data }
+        return { blogs: data }
     },
     head () {
         return {

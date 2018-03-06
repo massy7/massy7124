@@ -7,7 +7,7 @@
             Full-stack Web Engineer
         </h2>
         <nuxt-link class="button" to="/blog">Blog</nuxt-link>
-        <nuxt-link class="button" to="/blog">Blog</nuxt-link>
+        <nuxt-link class="button" to="/works">Works</nuxt-link>
         <nuxt-link class="button" to="/history">History</nuxt-link>
         <nuxt-link class="button" to="/contact">Contact</nuxt-link>
 
@@ -20,16 +20,10 @@
 </template>
 
 <script>
-import axios from '~/plugins/axios'
-
 export default {
-    async asyncData () {
-        let { data } = await axios.get('/api/blog')
-        return { blog: data }
-    },
     head () {
         return {
-            title: 'Blogs'
+            title: 'Massy\'s Home'
         }
     }
 }
@@ -39,10 +33,4 @@ export default {
 .title{
     margin: 30px 0;
 }
-.blog{
-    list-style: none;
-    margin: 0;
-    padding: 0;
-}
-
 </style>
