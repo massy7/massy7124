@@ -2,14 +2,14 @@
     <section class="container">
         <img src="~assets/img/logo.png" alt="Nuxt.js Logo" class="logo" />
         <h1 class="title">
-            Blog
+            {{ blog.name }}
         </h1>
         <h2 class="info">
-            {{ user.name }}
+            {{ blog.name }}
         </h2>
-        <nuxt-link class="button" to="/">
-            Blogs
-        </nuxt-link>
+
+        <nuxt-link class="button" to="/blog">Blog</nuxt-link>
+        <nuxt-link class="button" to="/">Top</nuxt-link>
     </section>
 </template>
 
@@ -17,11 +17,16 @@
 import axios from '~/plugins/axios'
 
 export default {
-    name: 'id',
+    transition (to, from) {
+        if (!from) return 'slide-left'
+        const toDepth = to.path.split('/').length
+        const fromDepth = from.path.split('/').length
+        return toDepth < fromDepth ? 'slide-right' : 'slide-left'
+    },
     asyncData ({ params, error }) {
         return axios.get('/api/blog/' + params.id)
             .then((res) => {
-                return { user: res.data }
+                return { blog: res.data }
             })
             .catch((e) => {
                 error({ statusCode: 404, message: 'Blog not found' })
@@ -29,7 +34,7 @@ export default {
     },
     head () {
         return {
-            title: `Blog: ${this.user.name}`
+            title: `Blog: ${this.blog.name}`
         }
     }
 }

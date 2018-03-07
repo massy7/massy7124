@@ -6,6 +6,7 @@
         <h2>
             Full-stack Web Engineer
         </h2>
+        
         <nuxt-link class="button" to="/blog">Blog</nuxt-link>
         <nuxt-link class="button" to="/works">Works</nuxt-link>
         <nuxt-link class="button" to="/history">History</nuxt-link>

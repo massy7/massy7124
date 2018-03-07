@@ -4,17 +4,13 @@
             Blog
         </h1>
 
-        <ul class="users">
-            <li v-for="(blog, index) in blogs" :key="index" class="blog">
-                <nuxt-link :to="{ name: 'id', params: { id: index }}">
-                    {{ blog.name }}
-                </nuxt-link>
-            </li>
-        </ul>
+        <div v-for="(blog, index) in blogs" :key="index" class="blog">
+            <nuxt-link :to="{ name: 'blog-id', params: { id: index }}">
+                {{ blog.name }}
+            </nuxt-link>
+        </div>
 
-        <nuxt-link class="button" to="/">
-            Top
-        </nuxt-link>
+        <nuxt-link class="button" to="/">Top</nuxt-link>
     </section>
 </template>
 
@@ -28,7 +24,9 @@ export default {
     },
     transition (to, from) {
         if (!from) return 'slide-left'
-        return +to.query.page < +from.query.page ? 'slide-right' : 'slide-left'
+        const toDepth = to.path.split('/').length
+        const fromDepth = from.path.split('/').length
+        return toDepth < fromDepth ? 'slide-right' : 'slide-left'
     },
     head () {
         return {

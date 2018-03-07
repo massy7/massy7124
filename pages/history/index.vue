@@ -3,9 +3,8 @@
         <h1 class="title">
             History
         </h1>
-        <nuxt-link class="button" to="/">
-            Top
-        </nuxt-link>
+        
+        <nuxt-link class="button" to="/">Top</nuxt-link>
     </section>
 </template>
 

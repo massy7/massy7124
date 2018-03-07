@@ -4,9 +4,15 @@ const router = Router()
 
 // Mock Blogs
 const blogs = [
-    { name: 'Alexandre' },
-    { name: 'Pooya' },
-    { name: 'Sébastien' }
+    {
+        name: 'Alexandre'
+    },
+    {
+        name: 'Pooya'
+    },
+    {
+        name: 'Sébastien'
+    }
 ]
 
 /* GET blogs listing. */
