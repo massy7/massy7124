@@ -5,8 +5,8 @@
         </h1>
 
         <div v-for="(blog, index) in blogs" :key="index" class="blog">
-            <nuxt-link :to="{ name: 'blog-id', params: { id: index }}">
-                {{ blog.name }}
+            <nuxt-link :to="{ name: 'blog-date-filePath', params: { date: blog.date, filePath: blog.filePath }}">
+                {{ blog.title }}
             </nuxt-link>
         </div>
 
@@ -30,7 +30,7 @@ export default {
     },
     head () {
         return {
-            title: 'Blogs'
+            title: 'Blog'
         }
     }
 }
