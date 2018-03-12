@@ -8,6 +8,13 @@ html, body
   margin: 0;
 }
 
+header
+{
+  padding: 20px;
+  text-align: center;
+  border-top: 1px solid #ddd;
+}
+
 footer
 {
   padding: 20px;

@@ -39,7 +39,11 @@ router.get('/blog/:date/:filePath', function (req, res, next) {
         const json = JSON.parse(fs.readFileSync('content/blog/' + req.params.date + '-' + req.params.filePath + '.json', 'utf8'))
         res.json(json)
     } catch (err) {
-        if (err.code === 'ENOENT') res.error({ statusCode: 404, message: err.message })
+        if (err.code === 'ENOENT') {
+            res.status(404).send('ページが見つかりません')
+            // res.send('', 404)
+            // res.error({ statusCode: 404, message: err.message })
+        }
     }
     // res.json(require('../../content/blog/' + req.params.date + '-' + req.params.filePath + '.json'))
 

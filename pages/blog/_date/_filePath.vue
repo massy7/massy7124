@@ -1,6 +1,6 @@
 <template>
     <section class="container">
-        <img src="~assets/img/logo.png" alt="Nuxt.js Logo" class="logo" />
+        <img :src="'/img/' + blog.imagePath">
         <h1 class="title">
             {{ blog.title }}
         </h1>
@@ -16,7 +16,6 @@
                 {{ blog.title }}
             </nuxt-link>
         </div>
-
 
         <nuxt-link class="button" to="/blog">Blog</nuxt-link>
         <nuxt-link class="button" to="/">Top</nuxt-link>

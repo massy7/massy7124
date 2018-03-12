@@ -1,22 +1,28 @@
 <template>
     <div>
+        <my-header/>
+        <my-sidebar/>
         <nuxt/>
         <my-footer/>
     </div>
 </template>
 
 <script>
+import MyHeader from '~/components/Header.vue'
+import MySidebar from '~/components/Sidebar.vue'
 import MyFooter from '~/components/Footer.vue'
 
 export default {
     components: {
+        MyHeader,
+        MySidebar,
         MyFooter
     }
 }
 </script>
 
 <style>
-.container {
+/* .container {
     margin: 0;
     width: 100%;
     padding: 100px 0;
@@ -44,5 +50,5 @@ export default {
     font-weight: 300;
     font-size: 2.5em;
     margin: 0;
-}
+} */
 </style>

@@ -13,6 +13,9 @@ module.exports = {
             { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
         ]
     },
+    modules: [
+        '@nuxtjs/vuetify'
+    ],
     /*
     ** Global CSS
     */
