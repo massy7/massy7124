@@ -1,10 +1,14 @@
 <template>
-    <section class="container" style="background-color: red;">
-        <h1 class="title">
-            History
-        </h1>
-        
-        <nuxt-link class="button" to="/">Top</nuxt-link>
+    <section class="container">
+        <div class="wrapper">
+            <h1 class="">
+            </h1>
+            <el-steps direction="vertical">
+                <el-step title="Step 1"></el-step>
+                <el-step title="Step 2"></el-step>
+                <el-step title="Step 3"></el-step>
+            </el-steps>
+        </div>
     </section>
 </template>
 

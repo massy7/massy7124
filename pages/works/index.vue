@@ -1,11 +1,10 @@
 <template>
     <section class="container">
-        <h1 class="title">
-            Works
-        </h1>
-        <nuxt-link class="button" to="/">
-            Top
-        </nuxt-link>
+        <div class="wrapper">
+            <h1 class="title">
+                Works
+            </h1>
+        </div>
     </section>
 </template>
 

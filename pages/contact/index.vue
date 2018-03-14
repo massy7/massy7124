@@ -1,10 +1,11 @@
 <template>
     <section class="container">
-        <h1 class="title">
-            Contact
-        </h1>
-
-        <nuxt-link class="button" to="/">Top</nuxt-link>
+        <div class="wrapper">
+            <section>
+                <h1 class="">Social</h1>
+                
+            </section>
+        </div>
     </section>
 </template>
 

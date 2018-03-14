@@ -14,12 +14,20 @@ module.exports = {
         ]
     },
     modules: [
-        '@nuxtjs/vuetify'
+        // '@nuxtjs/vuetify'
+        '@nuxtjs/font-awesome'
+    ],
+    plugins: [
+        '~plugins/element-ui'
     ],
     /*
     ** Global CSS
     */
-    css: ['~/assets/css/main.css'],
+    css: [
+        '~/assets/css/main.css',
+        'element-ui/lib/theme-chalk/index.css',
+        'element-ui/lib/theme-chalk/display.css'
+    ],
     /*
     ** env
     */
@@ -30,7 +38,10 @@ module.exports = {
     ** Add axios globally
     */
     build: {
-        vendor: ['axios'],
+        vendor: [
+            'axios',
+            'element-ui'
+        ],
         /*
         ** Run ESLINT on save
         */

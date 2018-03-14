@@ -1,24 +1,26 @@
 <template>
     <section class="container">
-        <img :src="'/img/' + blog.imagePath">
-        <h1 class="title">
-            {{ blog.title }}
-        </h1>
-        <h2 class="info">
-            {{ blog.date }}
-        </h2>
-
-        <div class="content" v-html="blog.content"></div>
-
-        <h2>他の記事</h2>
-        <div v-for="(blog, index) in blogs" :key="index" class="blog">
-            <nuxt-link :to="{ name: 'blog-date-filePath', params: { date: blog.date, filePath: blog.filePath }}">
+        <div class="wrapper">
+            <img :src="'/img/' + blog.imagePath">
+            <h1 class="title">
                 {{ blog.title }}
-            </nuxt-link>
-        </div>
+            </h1>
+            <h2 class="info">
+                {{ blog.date }}
+            </h2>
 
-        <nuxt-link class="button" to="/blog">Blog</nuxt-link>
-        <nuxt-link class="button" to="/">Top</nuxt-link>
+            <div class="content" v-html="blog.content"></div>
+
+            <h2>他の記事</h2>
+            <div v-for="(blog, index) in blogs" :key="index" class="blog">
+                <nuxt-link :to="{ name: 'blog-date-filePath', params: { date: blog.date, filePath: blog.filePath }}">
+                    {{ blog.title }}
+                </nuxt-link>
+            </div>
+
+            <nuxt-link class="button" to="/blog">Blog</nuxt-link>
+            <nuxt-link class="button" to="/">Top</nuxt-link>
+        </div>
     </section>
 </template>
 

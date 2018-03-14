@@ -1,16 +1,24 @@
 <template>
     <section class="container">
-        <h1 class="title">
-            Blog
-        </h1>
+        <div class="wrapper">
+            <el-collapse v-model="latestId">
+                <el-collapse-item v-for="(blog, index) in blogs" :key="index" class="blog" :name="blog.id">
+                    <template slot="title">
+                        <div class="blog-title" style="position:relative;">
+                            {{ blog.title }} <div class="" style="display:inline-block; position:absolute; right:36px;">{{ blog.date }}</div>
+                        </div>
+                    </template>
+                    <div class="content" v-html="blog.content"></div>
+                </el-collapse-item>
+            </el-collapse>
 
-        <div v-for="(blog, index) in blogs" :key="index" class="blog">
-            <nuxt-link :to="{ name: 'blog-date-filePath', params: { date: blog.date, filePath: blog.filePath }}">
-                {{ blog.title }}
-            </nuxt-link>
+            <!-- <div v-for="(blog, index) in blogs" :key="index" class="blog">
+                <nuxt-link :to="{ name: 'blog-date-filePath', params: { date: blog.date, filePath: blog.filePath }}">
+                    {{ blog.title }}
+                </nuxt-link>
+            </div> -->
+
         </div>
-
-        <nuxt-link class="button" to="/">Top</nuxt-link>
     </section>
 </template>
 
@@ -20,7 +28,11 @@ import axios from '~/plugins/axios'
 export default {
     async asyncData () {
         let { data } = await axios.get('/api/blog')
-        return { blogs: data }
+        data = data.slice().reverse()
+        return {
+            blogs: data,
+            latestId: data[0].id
+        }
     },
     transition (to, from) {
         if (!from) return 'slide-left'
@@ -37,15 +49,8 @@ export default {
 </script>
 
 <style scoped>
-.title{
-    margin: 30px 0;
-}
-.blog{
-    list-style: none;
-    margin: 0;
-    padding: 0;
-}
-.user{
-    margin: 10px 0;
+.blog-title {
+    font-size: 1.5em;
+    font-weight: bold;
 }
 </style>
