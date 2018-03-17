@@ -1,11 +1,12 @@
 <template>
-    <section class="container">
-        <div class="wrapper">
-            <h1 class="title">
-                Works
-            </h1>
-        </div>
-    </section>
+    <article class="wrapper">
+        <section>
+            <h1>作ったもの1</h1>
+            <div class="">
+                作ったもの1の内容
+            </div>
+        </section>
+    </article>
 </template>
 
 <script>
@@ -23,7 +24,5 @@ export default {
 </script>
 
 <style scoped>
-.title{
-    margin: 30px 0;
-}
+
 </style>

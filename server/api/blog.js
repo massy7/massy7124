@@ -6,28 +6,28 @@ const router = Router()
 // Mock Blogs
 const blogs = [
     {
-        id: 1,
+        id      : 1,
         filePath: 'first-commit',
-        title: '初投稿',
-        date: '2018-04-01',
-        tag: [1, 3],
-        content: '<h1>初投稿</h1><strong>html</strong>を<i>そのまま</i>書けます。'
+        title   : '初投稿',
+        date    : '2018-04-01',
+        tag     : [1, 3],
+        content : '<h1>初投稿</h1><strong>html</strong>を<i>そのまま</i>書けます。'
     },
     {
-        id: 2,
+        id      : 2,
         filePath: 'second-commit',
-        title: '2投稿',
-        date: '2018-04-02',
-        tag: [2, 3],
-        content: '<h1>2初投稿</h1><strong>html</strong>を<i>そのまま</i>書けます。'
+        title   : '2投稿',
+        date    : '2018-04-02',
+        tag     : [2, 3],
+        content : '<h1>2初投稿</h1><strong>html</strong>を<i>そのまま</i>書けます。'
     },
     {
-        id: 3,
+        id      : 3,
         filePath: 'third-commit',
-        title: '3投稿',
-        date: '2018-04-03',
-        tag: [1],
-        content: '<h1>3初投稿</h1><strong>html</strong>を<i>そのまま</i>書けます。'
+        title   : '3投稿',
+        date    : '2018-04-03',
+        tag     : [1],
+        content : '<h1>3初投稿</h1><strong>html</strong>を<i>そのまま</i>書けます。'
     }
 ]
 

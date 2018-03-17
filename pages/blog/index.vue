@@ -1,25 +1,25 @@
 <template>
-    <section class="container">
-        <div class="wrapper">
-            <el-collapse v-model="latestId">
-                <el-collapse-item v-for="(blog, index) in blogs" :key="index" class="blog" :name="blog.id">
-                    <template slot="title">
-                        <div class="blog-title" style="position:relative;">
-                            {{ blog.title }} <div class="" style="display:inline-block; position:absolute; right:36px;">{{ blog.date }}</div>
-                        </div>
-                    </template>
-                    <div class="content" v-html="blog.content"></div>
-                </el-collapse-item>
-            </el-collapse>
-
-            <!-- <div v-for="(blog, index) in blogs" :key="index" class="blog">
+    <article class="wrapper">
+        <el-collapse v-model="latestId" class="blog">
+            <el-collapse-item v-for="(blog, index) in blogs" :key="index" :name="blog.id">
+                <template slot="title">
+                    <div class="blog-title" style="position:relative;">
+                        {{ blog.title }} <div class="" style="display:inline-block; position:absolute; right:36px;">{{ blog.date }}</div>
+                    </div>
+                </template>
+                <div class="content" v-html="blog.content"></div>
                 <nuxt-link :to="{ name: 'blog-date-filePath', params: { date: blog.date, filePath: blog.filePath }}">
-                    {{ blog.title }}
+                    リンク
                 </nuxt-link>
-            </div> -->
+            </el-collapse-item>
+        </el-collapse>
 
-        </div>
-    </section>
+        <!-- <div v-for="(blog, index) in blogs" :key="index" class="blog">
+            <nuxt-link :to="{ name: 'blog-date-filePath', params: { date: blog.date, filePath: blog.filePath }}">
+                {{ blog.title }}
+            </nuxt-link>
+        </div> -->
+    </article>
 </template>
 
 <script>
@@ -30,7 +30,7 @@ export default {
         let { data } = await axios.get('/api/blog')
         data = data.slice().reverse()
         return {
-            blogs: data,
+            blogs   : data,
             latestId: data[0].id
         }
     },
@@ -49,6 +49,9 @@ export default {
 </script>
 
 <style scoped>
+.blog {
+    text-align: left;
+}
 .blog-title {
     font-size: 1.5em;
     font-weight: bold;

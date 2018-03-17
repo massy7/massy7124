@@ -1,14 +1,125 @@
 <template>
-    <section class="container">
-        <div class="wrapper">
-
+    <article class="wrapper">
+        <section>
             <a id="profile"></a>
-            <div class="section">
-                <h1>Profile</h1>
+            <h1>Profile</h1>
+            <div class="grid grid-profile">
+            	<div class="profile-image">
+                    <img class="icon-profile" src="/img/massy7124.jpg" alt="massy7124">
+                </div>
+            	<div class="name">
+                    Koki Mashiko
+                </div>
+            	<div class="detail">
+                    こんにちは。あああ<br>
+                    こんにちは。あああ<br>
+                    こんにちは。あああ<br>
+                </div>
             </div>
-            
-        </div>
-    </section>
+        </section>
+
+        <section>
+            <a id="technology"></a>
+            <h1>Technology</h1>
+
+            <h2>Frameworks</h2>
+            <div class="grid grid-tech center">
+            	<div class="">
+                    <a href="https://ja.nuxtjs.org/" title="Nuxt.js" target="_blank">
+                        <img class="tech-logo" src="/img/logo/nuxt.svg" alt="Nuxt.js">
+                    </a>
+                </div>
+            	<div class="">
+                    <a href="https://jp.vuejs.org/" title="Vue.js" target="_blank">
+                        <img class="tech-logo" src="/img/logo/vue.svg" alt="Vue.js">
+                    </a>
+                </div>
+            	<div class="">
+                    <a href="http://expressjs.com/" title="Express" target="_blank">
+                        <img class="tech-logo" src="/img/logo/express.svg" alt="Express">
+                    </a>
+                </div>
+            	<div class="">
+                    <a href="https://laravel.com/" title="Laravel5" target="_blank">
+                        <img class="tech-logo" src="/img/logo/laravel-color.svg" alt="Laravel5">
+                    </a>
+                </div>
+            	<div class="">
+                    <a href="https://cakephp.org/" title="CakePHP3" target="_blank">
+                        <img class="tech-logo" src="/img/logo/cakephp.svg" alt="CakePHP3">
+                    </a>
+                </div>
+            </div>
+
+            <h2>Languages</h2>
+            <div class="grid grid-tech center">
+            	<div class="">
+                    <a href="https://html.spec.whatwg.org/multipage/" title="HTML5" target="_blank">
+                        <img class="tech-logo" src="/img/logo/html5-color.svg" alt="HTML5">
+                    </a>
+                </div>
+            	<div class="">
+                    <a href="https://www.w3.org/Style/CSS/" title="CSS3" target="_blank">
+                        <img class="tech-logo" src="/img/logo/css3-color.svg" alt="CSS3">
+                    </a>
+                </div>
+            	<div class="">
+                    <a href="https://www.ecma-international.org/" title="ES6" target="_blank">
+                        <img class="tech-logo" src="/img/logo/es6.svg" alt="ES6">
+                    </a>
+                </div>
+                <div class="">
+                    <a href="https://jquery.com/" title="jQuery" target="_blank">
+                        <img class="tech-logo" src="/img/logo/jquery.svg" alt="jQuery">
+                    </a>
+                </div>
+            	<div class="">
+                    <a href="http://www.php.net/" title="PHP" target="_blank">
+                        <img class="tech-logo" src="/img/logo/php-color.svg" alt="PHP">
+                    </a>
+                </div>
+                <div class="">
+                    <a href="https://isocpp.org/" title="C++" target="_blank">
+                        <img class="tech-logo" src="/img/logo/C++.svg" alt="C++">
+                    </a>
+                </div>
+            </div>
+
+            <h2>Other</h2>
+            <div class="grid grid-tech center">
+                <div class="">
+                    <a href="https://nodejs.org/ja/" title="Node.js" target="_blank">
+                        <img class="tech-logo" src="/img/logo/nodejs-color.svg" alt="Node.js">
+                    </a>
+                </div>
+            	<div class="">
+                    <a href="https://github.com/" title="GitHub" target="_blank">
+                        <img class="tech-logo" src="/img/logo/github.svg" alt="GitHub">
+                    </a>
+                </div>
+            	<div class="">
+                    <a href="https://www.docker.com/" title="Docker" target="_blank">
+                        <img class="tech-logo" src="/img/logo/docker.svg" alt="Docker">
+                    </a>
+                </div>
+            	<div class="">
+                    <a href="https://www.mysql.com/" title="MySQL" target="_blank">
+                        <img class="tech-logo" src="/img/logo/mysql-logo.svg" alt="MySQL">
+                    </a>
+                </div>
+            	<div class="">
+                    <a href="https://aws.amazon.com/ec2/" title="Amazon EC2" target="_blank">
+                        <img class="tech-logo" src="/img/logo/amazon-ec2.svg" alt="Amazon EC2">
+                    </a>
+                </div>
+            	<div class="">
+                    <a href="https://atom.io/" title="Atom" target="_blank">
+                        <img class="tech-logo" src="/img/logo/atom-editor.svg" alt="Atom">
+                    </a>
+                </div>
+            </div>
+        </section>
+    </article>
 </template>
 
 <script>
@@ -26,7 +137,38 @@ export default {
 </script>
 
 <style scoped>
-.title{
-    margin: 30px 0;
+@media screen and (max-width: 767px) {
+    .grid-tech {
+    	grid-template-rows: 1fr 1fr;
+    	grid-template-columns: 1fr 1fr 1fr;
+    }
 }
+
+@media screen and (min-width: 768px) {
+    .grid-tech {
+    	grid-template-rows: 1fr;
+    	grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    }
+}
+.grid-profile {
+    grid-template-rows: 1fr 4fr;
+    grid-template-columns: 1fr 3fr;
+    grid-template-areas:
+        "profile-image name"
+        "profile-image detail";
+}
+.profile-image {
+    grid-area: profile-image;
+}
+
+.name {
+    grid-area: name;
+    font-size: 2em;
+}
+
+.detail {
+    grid-area: detail;
+}
+
+
 </style>

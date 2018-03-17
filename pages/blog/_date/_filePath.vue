@@ -1,8 +1,7 @@
 <template>
-    <section class="container">
-        <div class="wrapper">
-            <img :src="'/img/' + blog.imagePath">
-            <h1 class="title">
+    <article class="wrapper">
+        <section class="blog">
+            <h1 class="blog-title">
                 {{ blog.title }}
             </h1>
             <h2 class="info">
@@ -10,18 +9,8 @@
             </h2>
 
             <div class="content" v-html="blog.content"></div>
-
-            <h2>他の記事</h2>
-            <div v-for="(blog, index) in blogs" :key="index" class="blog">
-                <nuxt-link :to="{ name: 'blog-date-filePath', params: { date: blog.date, filePath: blog.filePath }}">
-                    {{ blog.title }}
-                </nuxt-link>
-            </div>
-
-            <nuxt-link class="button" to="/blog">Blog</nuxt-link>
-            <nuxt-link class="button" to="/">Top</nuxt-link>
-        </div>
-    </section>
+        </section>
+    </article>
 </template>
 
 <script>
@@ -40,7 +29,7 @@ export default {
 
         return {
             blogs: blogs.data,
-            blog: blog.data
+            blog : blog.data
         }
     },
     head () {
@@ -52,9 +41,6 @@ export default {
 </script>
 
 <style scoped>
-.title {
-    margin-top: 30px;
-}
 .info {
     font-weight: 300;
     color: #9aabb1;
@@ -63,5 +49,12 @@ export default {
 }
 .button {
     margin-top: 30px;
+}
+.blog {
+    text-align: left;
+}
+.blog-title {
+    font-size: 1.5em;
+    font-weight: bold;
 }
 </style>

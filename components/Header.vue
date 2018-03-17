@@ -6,7 +6,7 @@
         <nav>
             <nuxt-link class="button fab fa-home" to="/" exact>Home</nuxt-link>
             <nuxt-link class="button fab fa-code" to="/works">Works</nuxt-link>
-            <nuxt-link class="button fab fa-list" to="/history">History</nuxt-link>
+            <!-- <nuxt-link class="button fab fa-list" to="/history">History</nuxt-link> -->
             <nuxt-link class="button fab fa-edit" to="/blog">Blog</nuxt-link>
             <nuxt-link class="button fab fa-envelope" to="/contact">Contact</nuxt-link>
         </nav>
@@ -48,7 +48,7 @@ nav > .button, .button:visited {
     letter-spacing: 1px;
     text-decoration: none;
     text-transform: uppercase;
-    padding: 15px 30px;
+    padding: 15px 20px;
     margin: 10px 0px 0px 0px;
     font-size: 1.5em;
 }
