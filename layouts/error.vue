@@ -1,6 +1,6 @@
 <template>
     <section class="container">
-        <img src="../assets/img/logo.png" alt="Nuxt.js Logo" class="logo" />
+        <!-- <img src="../assets/img/logo.png" alt="Nuxt.js Logo" class="logo" /> -->
         <h1 v-if="error.statusCode === 404">ページが見つかりません</h1>
         <h1 class="title">
             {{ error.statusCode }}

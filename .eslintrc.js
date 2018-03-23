@@ -15,12 +15,13 @@ module.exports = {
         'indent': [2, 4, {
             'SwitchCase': 1,
         }],
-        'key-spacing':[2, {
+        'key-spacing': [2, {
             'beforeColon': false,
             'afterColon' : true,
             'align'      : 'colon'
         }],
         'no-multi-spaces': 0,
+        'brace-style'    : ['error', 'stroustrup']
     },
     globals: {}
 }

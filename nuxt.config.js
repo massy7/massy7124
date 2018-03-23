@@ -4,7 +4,7 @@ module.exports = {
     */
     head: {
         title: 'massy7124\'s site',
-        meta: [
+        meta : [
             { charset: 'utf-8' },
             { name: 'viewport', content: 'width=device-width, initial-scale=1' },
             { hid: 'description', name: 'description', content: 'Nuxt.js project' }
@@ -24,7 +24,7 @@ module.exports = {
     ** Global CSS
     */
     css: [
-        '~/assets/css/main.css',
+        { src: '~assets/css/main.scss', lang: 'scss' },
         'element-ui/lib/theme-chalk/index.css',
         'element-ui/lib/theme-chalk/display.css'
     ],
@@ -49,8 +49,8 @@ module.exports = {
             if (ctx.isClient) {
                 config.module.rules.push({
                     enforce: 'pre',
-                    test: /\.(js|vue)$/,
-                    loader: 'eslint-loader',
+                    test   : /\.(js|vue)$/,
+                    loader : 'eslint-loader',
                     exclude: /(node_modules)/
                 })
             }

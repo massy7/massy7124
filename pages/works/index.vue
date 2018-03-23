@@ -13,7 +13,7 @@
 export default {
     transition (to, from) {
         if (!from) return 'slide-left'
-        return +to.query.page < +from.query.page ? 'slide-right' : 'slide-left'
+        return from.name === 'index' ? 'slide-left' : 'slide-right'
     },
     head () {
         return {
@@ -23,6 +23,6 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 
 </style>

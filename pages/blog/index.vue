@@ -23,6 +23,7 @@
 </template>
 
 <script>
+// import { mapMutations } from 'vuex'
 import axios from '~/plugins/axios'
 
 export default {
@@ -36,19 +37,40 @@ export default {
     },
     transition (to, from) {
         if (!from) return 'slide-left'
-        const toDepth = to.path.split('/').length
-        const fromDepth = from.path.split('/').length
-        return toDepth < fromDepth ? 'slide-right' : 'slide-left'
+        if (from.name === 'index' || from.name === 'works') {
+            return 'slide-left'
+        }
+        else if (from.name === 'contact') {
+            return 'slide-right'
+        }
+        else if (to.path.split('/').length >= from.path.split('/').length) {
+            return 'slide-left'
+        }
+        else {
+            return 'slide-right'
+        }
     },
     head () {
         return {
             title: 'Blog'
         }
-    }
+    }// ,
+    // computed: {
+    //     todos () { return this.$store.state.todos.list }
+    // },
+    // methods: {
+    //     addTodo (e) {
+    //         this.$store.commit('todos/add', e.target.value)
+    //         e.target.value = ''
+    //     },
+    //     ...mapMutations({
+    //         toggle: 'todos/toggle'
+    //     })
+    // }
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .blog {
     text-align: left;
 }

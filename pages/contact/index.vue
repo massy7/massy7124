@@ -4,29 +4,40 @@
         <section>
             <h1>Social</h1>
 
-            <div class="grid grid-social center">
-            	<div class="">
-                    <a href="https://twitter.com/massy7124" class="no-hover twitter" target="_blank">
-                        <div class="icon-social fab fa-twitter-square"></div>
-                        Twitter
+            <div class="grid center">
+                <div class="">
+                    <a href="https://twitter.com/massy7124" title="Twitter" target="_blank">
+                        <img class="bland-logo" src="/img/logo/twitter.svg" alt="Twitter">
                     </a>
                 </div>
-            	<div class="">
-                    <a href="https://www.facebook.com/massy7124" class="no-hover facebook" target="_blank">
-                        <div class="icon-social fab fa-facebook-square"></div>
-                        Facebook
+                <div class="">
+                    <a href="https://www.facebook.com/massy7124" title="Facebook" target="_blank">
+                        <img class="bland-logo" src="/img/logo/facebook.svg" alt="Facebook" style="width:70%;">
                     </a>
                 </div>
-            	<div class="">
-                    <a href="https://www.instagram.com/massy7124" class="no-hover instagram" target="_blank">
-                        <div class="icon-social fab fa-instagram"></div>
-                        Instagram
+                <div class="">
+                    <a href="https://www.instagram.com/massy7124" title="Instagram" target="_blank">
+                        <img class="bland-logo" src="/img/logo/instagram.svg" alt="Instagram">
                     </a>
                 </div>
-            	<div class="">
-                    <a href="https://github.com/massy7" class="no-hover github" target="_blank">
-                        <div class="icon-social fab fa-github-square"></div>
-                        GitHub
+                <div class="">
+                    <a href="https://github.com/massy7" title="GitHub" target="_blank">
+                        <img class="bland-logo" src="/img/logo/github.svg" alt="GitHub" style="width:70%;">
+                    </a>
+                </div>
+                <div class="">
+                    <a href="https://ask.fm/massy7124" title="Ask.fm" target="_blank">
+                        <img class="bland-logo" src="/img/logo/askfm.svg" alt="Ask.fm">
+                    </a>
+                </div>
+                <div class="">
+                    <a href="https://peing.net/ja/massy7124" title="Peing" target="_blank">
+                        <img class="bland-logo" src="/img/logo/peing.svg" alt="Peing">
+                    </a>
+                </div>
+                <div class="">
+                    <a href="https://www.wantedly.com/users/18012899" title="Wantedly" target="_blank">
+                        <img class="bland-logo" src="/img/logo/wantedly.svg" alt="Wantedly" style="width:70%;">
                     </a>
                 </div>
             </div>
@@ -34,12 +45,10 @@
 
         <section>
             <h1>E-mail</h1>
-            <el-row :gutter="0" type="flex" justify="center" class="center">
-                <el-col :xs="12" :sm="8">
-                    <div class="icon-link icon fab fa-envelope" @click="copyToClipboard"></div>
-                    <el-input id="email" class="center" value="koki.mashiko.1995@gmail.com" readonly></el-input>
-                </el-col>
-            </el-row>
+            <div id="email" class="center">
+                <div id="icon-email" class="fab fa-envelope" @click="copyToClipboard"></div>
+                <el-input id="email-address" class="center" value="koki.mashiko.1995@gmail.com" readonly></el-input>
+            </div>
         </section>
 
     </article>
@@ -49,7 +58,7 @@
 export default {
     transition (to, from) {
         if (!from) return 'slide-left'
-        return +to.query.page < +from.query.page ? 'slide-right' : 'slide-left'
+        return 'slide-left'
     },
     head () {
         return {
@@ -58,7 +67,7 @@ export default {
     },
     methods: {
         copyToClipboard () {
-            const email = document.querySelector('#email')
+            const email = document.querySelector('#email-address')
             email.select()
             document.execCommand('copy')
             this.$notify({
@@ -71,18 +80,13 @@ export default {
 }
 </script>
 
-<style scoped>
-@media screen and (max-width: 767px) {
-    .grid-social {
-    	grid-template-rows: 1fr 1fr;
-    	grid-template-columns: 1fr 1fr;
-    }
+<style lang="scss" scoped>
+#email /deep/ #email-address{
+    width: 250px;
+    text-align: center;
 }
 
-@media screen and (min-width: 768px) {
-    .grid-social {
-    	grid-template-rows: 1fr;
-    	grid-template-columns: 1fr 1fr 1fr 1fr;
-    }
+#icon-email {
+    font-size: 4em;
 }
 </style>

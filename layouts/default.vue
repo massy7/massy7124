@@ -9,18 +9,18 @@
 
 <script>
 import MyHeader from '~/components/Header.vue'
-import MySidebar from '~/components/Sidebar.vue'
+import MyNavbar from '~/components/Navbar.vue'
 import MyFooter from '~/components/Footer.vue'
 
 export default {
     components: {
         MyHeader,
-        MySidebar,
+        MyNavbar,
         MyFooter
     }
 }
 </script>
 
-<style>
+<style lang="scss">
 
 </style>
