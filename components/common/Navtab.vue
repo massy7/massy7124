@@ -1,17 +1,17 @@
 <template>
-    <nav class="" :class="{ 'fixed-top': isFixedTop, 'main-bg-color': isFixedTop }">
-        <nuxt-link class="button fab fa-home" to="/" exact><br>Home</nuxt-link>
-        <nuxt-link class="button fab fa-code" to="/works"><br>Works</nuxt-link>
-        <!-- <nuxt-link class="button fab fa-list" to="/history"><br>History</nuxt-link> -->
-        <nuxt-link class="button fab fa-edit" to="/blog"><br>Blog</nuxt-link>
-        <nuxt-link class="button fab fa-envelope" to="/contact"><br>Contact</nuxt-link>
+    <nav class="" :class="{ 'fixed-top bg-color-main': isFixedTop }">
+        <nuxt-link class="button fa fa-home" to="/" exact><br>Home</nuxt-link>
+        <nuxt-link class="button fa fa-code" to="/works"><br>Works</nuxt-link>
+        <!-- <nuxt-link class="button fa fa-list" to="/history"><br>History</nuxt-link> -->
+        <nuxt-link class="button fa fa-edit" to="/blog/1"><br>Blog</nuxt-link>
+        <nuxt-link class="button fa fa-envelope" to="/contact"><br>Contact</nuxt-link>
     </nav>
 </template>
 
 <script>
 export default {
     props: {
-        isFixedTop: false
+        isFixedTop: Boolean
     }
 }
 </script>

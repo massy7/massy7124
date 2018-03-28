@@ -25,7 +25,7 @@ export default {
     },
     async asyncData ({ params, error }) {
         const blogs = await axios.get('/api/blog')
-        const blog = await axios.get('/api/blog/' + params.date + '/' + params.filePath)
+        const blog = await axios.get('/api/blog/' + params._id)
 
         return {
             blogs: blogs.data,

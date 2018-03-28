@@ -8,14 +8,12 @@
 </template>
 
 <script>
-import MyHeader from '~/components/Header.vue'
-import MyNavbar from '~/components/Navbar.vue'
-import MyFooter from '~/components/Footer.vue'
+import MyHeader from '~/components/common/TheHeader.vue'
+import MyFooter from '~/components/common/TheFooter.vue'
 
 export default {
     components: {
         MyHeader,
-        MyNavbar,
         MyFooter
     }
 }

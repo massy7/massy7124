@@ -1,10 +1,10 @@
 <template>
     <nav>
-        <nuxt-link class="button fab fa-home" to="/" exact>Home</nuxt-link>
-        <nuxt-link class="button fab fa-code" to="/works">Works</nuxt-link>
-        <!-- <nuxt-link class="button fab fa-list" to="/history">History</nuxt-link> -->
-        <nuxt-link class="button fab fa-edit" to="/blog">Blog</nuxt-link>
-        <nuxt-link class="button fab fa-envelope" to="/contact">Contact</nuxt-link>
+        <nuxt-link class="button fa fa-home" to="/" exact>Home</nuxt-link>
+        <nuxt-link class="button fa fa-code" to="/works">Works</nuxt-link>
+        <!-- <nuxt-link class="button fa fa-list" to="/history">History</nuxt-link> -->
+        <nuxt-link class="button fa fa-edit" to="/blog/1">Blog</nuxt-link>
+        <nuxt-link class="button fa fa-envelope" to="/contact">Contact</nuxt-link>
     </nav>
 </template>
 

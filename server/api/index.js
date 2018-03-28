@@ -1,15 +1,11 @@
 import { Router } from 'express'
 
 import blog from './blog'
-import history from './history'
-import contact from './contact'
-import works from './works'
+import tag from './tag'
 
 const router = Router()
 
 router.use(blog)
-router.use(history)
-router.use(contact)
-router.use(works)
+router.use(tag)
 
 export default router

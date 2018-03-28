@@ -1,5 +1,7 @@
 import express from 'express'
 import { Nuxt, Builder } from 'nuxt'
+// postのとき値を受け取るために必要(req.body)
+import bodyParser from 'body-parser'
 
 import api from './api'
 // const history = require('connect-history-api-fallback')
@@ -15,6 +17,12 @@ const port = process.env.PORT || 3000
 // app.use(history())
 
 app.set('port', port)
+
+// postのとき値を受け取るために必要(req.body)
+app.use(bodyParser.urlencoded({
+    extended: true
+}))
+app.use(bodyParser.json())
 
 // Import API Routes
 app.use('/api', api)

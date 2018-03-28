@@ -4,7 +4,7 @@
         <section>
             <h1>Social</h1>
 
-            <div class="grid center">
+            <div class="grid grid-logo center">
                 <div class="">
                     <a href="https://twitter.com/massy7124" title="Twitter" target="_blank">
                         <img class="bland-logo" src="/img/logo/twitter.svg" alt="Twitter">
@@ -46,7 +46,7 @@
         <section>
             <h1>E-mail</h1>
             <div id="email" class="center">
-                <div id="icon-email" class="fab fa-envelope" @click="copyToClipboard"></div>
+                <div id="icon-email" class="fa fa-envelope" @click="copyToClipboard"></div>
                 <el-input id="email-address" class="center" value="koki.mashiko.1995@gmail.com" readonly></el-input>
             </div>
         </section>
@@ -56,15 +56,6 @@
 
 <script>
 export default {
-    transition (to, from) {
-        if (!from) return 'slide-left'
-        return 'slide-left'
-    },
-    head () {
-        return {
-            title: 'Contact'
-        }
-    },
     methods: {
         copyToClipboard () {
             const email = document.querySelector('#email-address')
@@ -76,12 +67,26 @@ export default {
                 position: 'bottom-right'
             })
         }
+    },
+    transition (to, from) {
+        if (!from) return 'slide-left'
+        return 'slide-left'
+    },
+    head () {
+        return {
+            title: 'Contact'
+        }
     }
 }
 </script>
 
 <style lang="scss" scoped>
-#email /deep/ #email-address{
+#email {
+    width: 250px;
+    margin: 0 auto;
+}
+
+#email /deep/ #email-address {
     width: 250px;
     text-align: center;
 }

@@ -23,7 +23,7 @@
             <a id="technology"></a>
             <h1>Technology</h1>
 
-            <div class="grid center">
+            <div class="grid grid-logo center">
             	<div class="">
                     <a href="https://ja.nuxtjs.org/" title="Nuxt.js" target="_blank">
                         <img class="bland-logo" src="/img/logo/nuxt.svg" alt="Nuxt.js">

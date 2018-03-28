@@ -1,12 +1,12 @@
 <template>
-    <footer class="main-bg-color">
+    <footer class="bg-color-main">
         <my-navtab class="hidden-sm-and-up"/>
         <span>© 2018 Koki Mashiko</span>
     </footer>
 </template>
 
 <script>
-import MyNavtab from '~/components/Navtab.vue'
+import MyNavtab from '~/components/common/Navtab.vue'
 
 export default {
     components: {

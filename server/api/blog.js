@@ -1,70 +1,65 @@
 import { Router } from 'express'
-// import axios from '~/plugins/axios'
+import mongodb from 'mongodb'
+import collection from './mongo'
+import assert from 'assert'
 
 const router = Router()
 
-// Mock Blogs
-const blogs = [
-    {
-        id      : 1,
-        filePath: 'first-commit',
-        title   : '初投稿',
-        date    : '2018-04-01',
-        tag     : [1, 3],
-        content : '<h1>初投稿</h1><strong>html</strong>を<i>そのまま</i>書けます。'
-    },
-    {
-        id      : 2,
-        filePath: 'second-commit',
-        title   : '2投稿',
-        date    : '2018-04-02',
-        tag     : [2, 3],
-        content : '<h1>2初投稿</h1><strong>html</strong>を<i>そのまま</i>書けます。'
-    },
-    {
-        id      : 3,
-        filePath: 'third-commit',
-        title   : '3投稿',
-        date    : '2018-04-03',
-        tag     : [1],
-        content : '<h1>3初投稿</h1><strong>html</strong>を<i>そのまま</i>書けます。'
-    }
-]
+const ObjectID = mongodb.ObjectID
+const collectionName = 'blogs'
 
-/* GET blogs listing. */
-router.get('/blog', function (req, res, next) {
-    res.json(blogs)
+const maxBlogCountEachPage = 10
+
+// For Cross Origin
+// router.all('/*', function (req, res, next) {
+//     res.contentType('json')
+//     res.header('Access-Control-Allow-Origin', '*')
+//     res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept')
+//     res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS')
+//     next()
+// })
+
+router.get('/blog/all', function (req, res) {
+    collection(collectionName).find().sort({_id: -1}).limit(maxBlogCountEachPage).toArray(function (err, docs) {
+        assert.equal(null, err)
+        res.json(docs)
+    })
 })
 
-router.get('/blog/:date/:filePath', function (req, res, next) {
-    const fs = require('fs')
-    try {
-        const json = JSON.parse(fs.readFileSync('content/blog/' + req.params.date + '-' + req.params.filePath + '.json', 'utf8'))
-        res.json(json)
-    } catch (err) {
-        if (err.code === 'ENOENT') {
-            res.status(404).send('ページが見つかりません')
-            // res.send('', 404)
-            // res.error({ statusCode: 404, message: err.message })
-        }
-    }
-    // res.json(require('../../content/blog/' + req.params.date + '-' + req.params.filePath + '.json'))
+router.get('/blog/count-all', function (req, res) {
+    collection(collectionName).count()
+        .then((result) => {
+            res.json(result)
+        }).catch((err) => {
+            console.log(err)
+        })
+})
 
-    // const fs = require('fs')
-    // const blog = fs.createReadStream('/api/contact.js')
-    // console.log(blog)
-    // const blog = fs.createReadStream('/../content/blog/' + req.params.date + '-' + req.params.filePath + '.json')
-    // res.json(blog)
-    // const date = parseInt(req.params.date)
-    // const filePath = parseInt(req.params.filePath)
-    // res.json('.json')
-    // axios.get('~content/blog/' + req.params.date + '-' + req.params.filePath + '.json')
-    //     .then((response) => {
-    //         res.json(response)
-    //     })
-    //     .catch((error) => {
-    //         error({ statusCode: 404, message: 'Blog not found' })
-    //     })
+router.get('/blog/:page', function (req, res) {
+    collection(collectionName).find().sort({_id: -1}).skip(req.params.page * maxBlogCountEachPage).limit(maxBlogCountEachPage).toArray(function (err, docs) {
+        assert.equal(null, err)
+        res.json(docs)
+    })
+})
+
+router.post('/blog/insert', function (req, res) {
+    collection(collectionName).insertOne(req.body).then(function (r) {
+        res.send(r)
+    })
+})
+
+router.get('/blog/update/:id', function (req, res) {
+    collection(collectionName).findOneAndUpdate({ _id: new ObjectID(req.params.id) }, req.body, {}, function (err, r) {
+        assert.equal(null, err)
+        res.send(r)
+    })
+})
+
+router.get('/blog/delete/:id', function (req, res) {
+    collection(collectionName).findOneAndDelete({ _id: new ObjectID(req.params.id) }, {}, function (err, r) {
+        assert.equal(null, err)
+        res.send(r)
+    })
 })
 
 export default router

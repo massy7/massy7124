@@ -1,32 +1,34 @@
 <template>
     <div class="">
-        <header class="header-sm-and-up hidden-xs-only main-bg-color">
+        <header class="header-sm-and-up hidden-xs-only bg-color-main">
             <h1>Massy7124's Portfolio</h1>
             <h2>Full-stack Web Engineer</h2>
             <my-navbar/>
         </header>
-        <header class="header-xs hidden-sm-and-up main-bg-color"
-                :class="{ 'fixed-top': isFixedTop}">
+        <header
+            class="header-xs hidden-sm-and-up bg-color-main"
+            :class="{ 'fixed-top': isFixedTop}"
+        >
             <h1>Massy7124's Portfolio</h1>
             <h2>Full-stack Web Engineer</h2>
-            <my-navtab :isFixedTop="isFixedTop"/>
+            <my-navtab class="hidden-sm-and-up" :is-fixed-top="isFixedTop"/>
         </header>
     </div>
 </template>
 
 <script>
-import MyNavbar from '~/components/Navbar.vue'
-import MyNavtab from '~/components/Navtab.vue'
+import MyNavbar from '~/components/common/TheHeaderNavbar.vue'
+import MyNavtab from '~/components/common/Navtab.vue'
 
 export default {
     components: {
         MyNavbar,
         MyNavtab
     },
-    data: () => {
+    data () {
         return {
             scrollY   : 0,
-            isFixedTop: 0
+            isFixedTop: false
         }
     },
     mounted () {

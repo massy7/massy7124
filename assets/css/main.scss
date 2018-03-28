@@ -16,8 +16,14 @@ html, body
     padding: 30px 10vw;
 }
 
-.main-bg-color {
-    /*background-color: rgba( 0, 191, 255, 0.8 );*/
+@media (max-width:767px) {
+    .wrapper {
+        padding: 30px 5vw;
+    }
+
+}
+
+.bg-color-main {
     background-color: deepskyblue;
 }
 
@@ -37,7 +43,7 @@ section > h2 {
     font-size: 2em;
 }
 
-.fab {
+.fa {
 	font-family: "FontAwesome";
 }
 
@@ -56,8 +62,15 @@ a:hover, a:focus, a:visited {
 	grid-column-gap: 20px;
 	width: 100%;
     height: auto;
+}
+
+.grid-logo {
     grid-template-columns: repeat(auto-fit, 85px);
     justify-content: center;
+}
+
+.el-tag {
+    margin: 5px;
 }
 
 /*--------------------------------------------------------------
