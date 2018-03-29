@@ -3,6 +3,8 @@ import { Nuxt, Builder } from 'nuxt'
 // postのとき値を受け取るために必要(req.body)
 import bodyParser from 'body-parser'
 import session from 'express-session'
+// 認証
+import passport from 'passport'
 
 import api from './api'
 // const history = require('connect-history-api-fallback')
@@ -31,6 +33,9 @@ app.use(session({
     saveUninitialized: false,
     cookie           : { maxAge: 60000 }
 }))
+
+app.use(passport.initialize())
+app.use(passport.session())
 
 // Import API Routes
 app.use('/api', api)

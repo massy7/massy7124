@@ -10,15 +10,6 @@ const collectionName = 'blogs'
 
 const maxBlogCountEachPage = 10
 
-// For Cross Origin
-// router.all('/*', function (req, res, next) {
-//     res.contentType('json')
-//     res.header('Access-Control-Allow-Origin', '*')
-//     res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept')
-//     res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS')
-//     next()
-// })
-
 router.get('/blog/all', function (req, res) {
     collection(collectionName).find().sort({_id: -1}).limit(maxBlogCountEachPage).toArray(function (err, docs) {
         assert.equal(null, err)

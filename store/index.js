@@ -37,13 +37,13 @@ const store = () => new Vuex.Store({
                 })
             }).then((res) => {
                 if (res.status === 401) {
-                    throw new Error('Bad credentials')
+                    throw new Error('Username、Passwordをお確かめください。')
                 }
                 else {
                     return res.json()
                 }
             }).then((authUser) => {
-                commit('SET_USER', authUser)
+                commit('SET_USER', authUser.username)
             })
         },
         logout ({commit}) {

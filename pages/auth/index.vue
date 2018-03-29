@@ -37,16 +37,14 @@ export default {
         }
     },
     methods: {
-        login (formName) {
-            this.$refs[formName].validate((valid) => {
+        async login (formName) {
+            await this.$refs[formName].validate(async (valid) => {
                 if (valid) {
                     try {
-                        this.$store.dispatch('login', {
+                        await this.$store.dispatch('login', {
                             username: this.form.username,
                             password: this.form.password
                         })
-                        this.form.username = ''
-                        this.form.password = ''
                     }
                     catch (e) {
                         this.errorMessage = e.message
