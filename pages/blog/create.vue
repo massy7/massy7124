@@ -42,6 +42,11 @@
 import axios from '~/plugins/axios'
 
 export default {
+    fetch ({ store, redirect }) {
+        if (!store.state.authUser) {
+            return redirect('/auth')
+        }
+    },
     data () {
         return {
             form: {

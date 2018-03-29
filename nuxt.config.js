@@ -55,5 +55,6 @@ module.exports = {
                 })
             }
         }
-    }
+    },
+    mode: 'spa'
 }

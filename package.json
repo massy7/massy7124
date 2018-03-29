@@ -21,12 +21,14 @@
     "cross-env": "^5.1.4",
     "element-ui": "^2.2.2",
     "express": "^4.16.3",
+    "express-session": "^1.15.6",
     "mongo-express": "^0.46.0",
     "mongodb": "^3.0.4",
     "node-sass": "^4.7.2",
     "nuxt": "^1.0.0-rc3",
     "sass-loader": "^6.0.7",
-    "source-map-support": "^0.4.15"
+    "source-map-support": "^0.4.15",
+    "whatwg-fetch": "^2.0.3"
   },
   "devDependencies": {
     "babel-eslint": "^7.2.3",

@@ -2,6 +2,7 @@ import express from 'express'
 import { Nuxt, Builder } from 'nuxt'
 // postのとき値を受け取るために必要(req.body)
 import bodyParser from 'body-parser'
+import session from 'express-session'
 
 import api from './api'
 // const history = require('connect-history-api-fallback')
@@ -23,6 +24,13 @@ app.use(bodyParser.urlencoded({
     extended: true
 }))
 app.use(bodyParser.json())
+
+app.use(session({
+    secret           : 'super-secret-key',
+    resave           : false,
+    saveUninitialized: false,
+    cookie           : { maxAge: 60000 }
+}))
 
 // Import API Routes
 app.use('/api', api)

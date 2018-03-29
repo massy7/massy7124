@@ -1,6 +1,6 @@
 <template>
     <article class="wrapper">
-        <el-collapse v-model="latestId" class="blog">
+        <el-collapse v-model="detailId" class="blog">
             <el-collapse-item v-for="(blog, index) in blogs" :key="index" :name="blog._id">
                 <template slot="title">
                     <div style="position:relative;">
@@ -17,7 +17,7 @@
             </el-collapse-item>
         </el-collapse>
 
-        <div class="center">
+        <div class="center pagination">
             <el-pagination
                 layout="prev, pager, next"
                 :total="total"
@@ -27,7 +27,6 @@
             >
             </el-pagination>
         </div>
-
         <nuxt-link class="fa fa-edit" to="/blog/create">Blog作成</nuxt-link>
     </article>
 </template>
@@ -43,22 +42,25 @@ export default {
         }
     },
     validate ({params}) {
-        return /^\d+$/.test(params.page)
+        return /^\d+$/.test(params.page) && params.page >= 1 && (params.id === void 0 || /^[a-z0-9]+$/.test(params.id))
     },
     created () {
         this.currentPage = Number(this.$route.params.page)
+
         axios.get('/api/blog/count-all')
             .then((response) => {
                 this.total = response.data
-            }).catch((err) => {
+            })
+            .catch((err) => {
                 console.log(err)
             })
     },
-    async asyncData ({params}) {
+    async asyncData ({params, res}) {
         let { data } = await axios.get('/api/blog/' + (params.page - 1))
+        const detailId = params.id === void 0 ? data[0]._id : params.id
         return {
             blogs   : data,
-            latestId: data[0]._id
+            detailId: detailId
         }
     },
     methods: {

@@ -30,7 +30,8 @@ router.get('/blog/count-all', function (req, res) {
     collection(collectionName).count()
         .then((result) => {
             res.json(result)
-        }).catch((err) => {
+        })
+        .catch((err) => {
             console.log(err)
         })
 })
@@ -38,6 +39,9 @@ router.get('/blog/count-all', function (req, res) {
 router.get('/blog/:page', function (req, res) {
     collection(collectionName).find().sort({_id: -1}).skip(req.params.page * maxBlogCountEachPage).limit(maxBlogCountEachPage).toArray(function (err, docs) {
         assert.equal(null, err)
+        if (docs.length <= 0) {
+            res.status(404)
+        }
         res.json(docs)
     })
 })

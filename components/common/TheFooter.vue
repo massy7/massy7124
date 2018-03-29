@@ -1,7 +1,7 @@
 <template>
     <footer class="bg-color-main">
         <my-navtab class="hidden-sm-and-up"/>
-        <span>© 2018 Koki Mashiko</span>
+        <nuxt-link class="copyright" to="/auth">© 2018 Koki Mashiko</nuxt-link>
     </footer>
 </template>
 
@@ -19,6 +19,10 @@ export default {
 footer {
     width: 100vw;
     text-align: center;
+    color: white;
+}
+
+.copyright {
     color: white;
 }
 </style>
