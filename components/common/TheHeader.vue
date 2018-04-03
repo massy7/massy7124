@@ -1,7 +1,7 @@
 <template>
     <div class="">
         <header class="header-sm-and-up hidden-xs-only bg-color-main">
-            <h1>Massy7124's Portfolio</h1>
+            <h1>Massy7124</h1>
             <h2>Full-stack Web Engineer</h2>
             <my-navbar/>
         </header>
@@ -9,7 +9,7 @@
             class="header-xs hidden-sm-and-up bg-color-main"
             :class="{ 'fixed-top': isFixedTop}"
         >
-            <h1>Massy7124's Portfolio</h1>
+            <h1>Massy7124</h1>
             <h2>Full-stack Web Engineer</h2>
             <my-navtab class="hidden-sm-and-up" :is-fixed-top="isFixedTop"/>
         </header>
@@ -37,7 +37,7 @@ export default {
     methods: {
         handleScroll () {
             this.scrollY = window.scrollY
-            this.isFixedTop = this.scrollY > 86
+            this.isFixedTop = this.scrollY > 75
         }
     }
 }
@@ -56,7 +56,7 @@ export default {
     }
     h2 {
         font-weight: 300;
-        font-size: 2em;
+        font-size: 1.5em;
         margin: 0;
     }
 }
@@ -74,12 +74,12 @@ export default {
     }
     h2 {
         font-weight: 100;
-        font-size: 1.5em;
+        font-size: 1em;
         margin: 0 0 10px 0;
     }
 
     &.fixed-top {
-        margin-bottom: 51px;
+        margin-bottom: 33px;
     }
 }
 </style>

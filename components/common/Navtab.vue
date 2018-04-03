@@ -1,10 +1,10 @@
 <template>
     <nav class="" :class="{ 'fixed-top bg-color-main': isFixedTop }">
-        <nuxt-link class="button fa fa-home" to="/" exact><br>Home</nuxt-link>
-        <nuxt-link class="button fa fa-code" to="/works"><br>Works</nuxt-link>
-        <!-- <nuxt-link class="button fa fa-list" to="/history"><br>History</nuxt-link> -->
-        <nuxt-link class="button fa fa-edit" to="/blog/1"><br>Blog</nuxt-link>
-        <nuxt-link class="button fa fa-envelope" to="/contact"><br>Contact</nuxt-link>
+        <nuxt-link class="button" to="/" exact><span class="fa fa-home"></span><br>Home</nuxt-link>
+        <nuxt-link class="button" to="/works"><span class="fa fa-code"></span><br>Works</nuxt-link>
+        <!-- <nuxt-link class="button" to="/history"><span class="fa fa-list"></span>History</nuxt-link> -->
+        <nuxt-link class="button" to="/blog/1"><span class="fa fa-edit"></span><br>Blog</nuxt-link>
+        <nuxt-link class="button" to="/contact"><span class="fa fa-envelope"></span><br>Contact</nuxt-link>
     </nav>
 </template>
 

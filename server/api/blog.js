@@ -37,6 +37,17 @@ router.get('/blog/:page', function (req, res) {
     })
 })
 
+router.get('/blog/:page/:id', function (req, res) {
+    collection(collectionName).findOne({'_id': ObjectID(req.params.id)})
+        .then((result) => {
+            res.json(result)
+        })
+        .catch((err) => {
+            res.status(404)
+            console.log(err)
+        })
+})
+
 router.post('/blog/insert', function (req, res) {
     collection(collectionName).insertOne(req.body).then(function (r) {
         res.send(r)

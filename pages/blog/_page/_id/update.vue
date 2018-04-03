@@ -1,10 +1,11 @@
 <template>
     <article class="wrapper">
-        <h1>Blog作成</h1>
+        <h1>Blog編集</h1>
         <el-form ref="form" :rules="rules" label-position="top" :model="form">
             <el-form-item label="タイトル" prop="title">
                 <el-input placeholder="タイトル" v-model="form.title"></el-input>
             </el-form-item>
+            <el-button size="small" @click.prevent="addTag"><i class="el-icon-circle-plus-outline"></i>タグ追加</el-button>
             <el-form-item
                 v-for="(tag, index) in form.tags"
                 :key="tag.key"
@@ -18,7 +19,6 @@
                     value-key="name"
                     placeholder="タグ"
                 ></el-autocomplete>
-                <el-button @click.prevent="addTag"><i class="el-icon-circle-plus-outline"></i></el-button>
                 <el-button @click.prevent="removeTag(tag)"><i class="el-icon-remove-outline"></i></el-button>
             </el-form-item>
             <el-form-item label="本文" prop="content">
@@ -30,8 +30,8 @@
                 </quill-editor>
             </el-form-item>
             <el-form-item>
-                <el-button type="primary" class="fa fa-edit" @click="submitForm('form')">Create</el-button>
-                <el-button @click="createCancel()">Cancel</el-button>
+                <el-button type="primary" class="fa fa-edit" @click="submitForm('form')">Update</el-button>
+                <el-button @click="updateCancel()">Cancel</el-button>
             </el-form-item>
         </el-form>
     </article>
@@ -42,9 +42,13 @@ import axios from '~/plugins/axios'
 
 export default {
     middleware: 'redirectAuthIfNotSignin',
+    validate ({params}) {
+        return /^\d+$/.test(params.page) && params.page >= 1 && (params.id !== void 0 || /^[a-z0-9]+$/.test(params.id))
+    },
     data () {
         return {
             form: {
+                _id  : '',
                 title: '',
                 tags : [{
                     name: ''
@@ -89,6 +93,22 @@ export default {
             allTags: data
         }
     },
+    mounted () {
+        axios
+            .get('/api/blog/' + this.$route.params.page + '/' + this.$route.params.id)
+            .then((data) => {
+                this.form._id = data.data._id
+                this.form.title = data.data.title
+                this.form.tags = data.data.tags.map((value) => {
+                    return {name: value}
+                })
+                this.form.content = data.data.content
+            })
+            .catch((error) => {
+                this.$message.error('取得エラー')
+                console.log(error)
+            })
+    },
     methods: {
         tagSearch (tagName, callback) {
             var allTags = this.allTags
@@ -119,7 +139,7 @@ export default {
                 if (valid) {
                     const content = this.form.content.replace(/<pre class="ql-syntax" spellcheck="false">/g, '<pre><code>').replace(/<\/pre>/g, '</code>')
                     axios
-                        .post('/api/blog/insert', {
+                        .post('/api/blog/update' + this.form._id, {
                             title    : this.form.title,
                             tags     : this.form.tags.map(tag => tag.name),
                             content  : content,
@@ -145,7 +165,7 @@ export default {
                 }
             })
         },
-        createCancel () {
+        updateCancel () {
             this.$router.push({path: '/blog/1'})
         }
     },

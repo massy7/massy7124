@@ -25,7 +25,10 @@ router.post('/auth/login', function (req, res, next) {
             if (err) {
                 return res.json(err)
             }
-            return res.json({ username: user.username })
+            return res.json({
+                username: user.username,
+                role    : user.role
+            })
         })
     })(req, res, next)
 })

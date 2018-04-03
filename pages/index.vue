@@ -12,9 +12,8 @@
                 </div>
             	<div class="detail">
                     益子滉輝と申します。<br>
-                    2017年卒で社会人となり、Web Engineerとしてバックエンド、フロントエンドともに設計・実装を行っています。<br>
-                    aaa <br>
-                    aaa <br>
+                    木更津工業高等専門学校 制御・情報システム工学専攻科を修了し、2017年卒で社会人に。<br>
+                    Web Engineerとしてバックエンド、フロントエンドともに設計・実装を行っています。<br>
                 </div>
             </div>
         </section>
@@ -102,6 +101,11 @@
             	<div class="">
                     <a href="https://www.docker.com/" title="Docker" target="_blank">
                         <img class="bland-logo" src="/img/logo/docker.svg" alt="Docker">
+                    </a>
+                </div>
+                <div class="">
+                    <a href="https://www.mongodb.com/" title="MongoDB" target="_blank">
+                        <img class="bland-logo" src="/img/logo/mongodb.svg" alt="MongoDB">
                     </a>
                 </div>
             	<div class="">

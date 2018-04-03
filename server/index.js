@@ -23,15 +23,16 @@ app.set('port', port)
 
 // postのとき値を受け取るために必要(req.body)
 app.use(bodyParser.urlencoded({
+    limit   : '50mb',
     extended: true
 }))
-app.use(bodyParser.json())
+app.use(bodyParser.json({limit: '50mb'}))
 
 app.use(session({
     secret           : 'super-secret-key',
     resave           : false,
     saveUninitialized: false,
-    cookie           : { maxAge: 60000 }
+    cookie           : { maxAge: 1000 * 60 * 60 }
 }))
 
 app.use(passport.initialize())

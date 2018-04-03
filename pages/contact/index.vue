@@ -1,8 +1,7 @@
 <template>
     <article class="wrapper">
-
         <section>
-            <h1>Social</h1>
+            <h1>Account</h1>
 
             <div class="grid grid-logo center">
                 <div class="">
@@ -20,11 +19,11 @@
                         <img class="bland-logo" src="/img/logo/instagram.svg" alt="Instagram">
                     </a>
                 </div>
-                <div class="">
+                <!-- <div class="">
                     <a href="https://github.com/massy7" title="GitHub" target="_blank">
                         <img class="bland-logo" src="/img/logo/github.svg" alt="GitHub" style="width:70%;">
                     </a>
-                </div>
+                </div> -->
                 <div class="">
                     <a href="https://ask.fm/massy7124" title="Ask.fm" target="_blank">
                         <img class="bland-logo" src="/img/logo/askfm.svg" alt="Ask.fm">
@@ -44,18 +43,57 @@
         </section>
 
         <section>
-            <h1>E-mail</h1>
-            <div id="email" class="center">
-                <div id="icon-email" class="fa fa-envelope" @click="copyToClipboard"></div>
-                <el-input id="email-address" class="center" value="koki.mashiko.1995@gmail.com" readonly></el-input>
-            </div>
-        </section>
+            <h1>Form</h1>
+            <el-form ref="form" :rules="rules" label-position="top" :model="form" class="form-direct">
+                <el-form-item label="お名前" prop="name">
+                    <el-input placeholder="お名前" v-model="form.name"></el-input>
+                </el-form-item>
+                <el-form-item label="アカウント" prop="name">
+                    <el-input placeholder="アカウント" v-model="form.account"></el-input>
+                </el-form-item>
+                <el-form-item label="本文" prop="content">
+                    <el-input
+                        type="textarea"
+                        :autosize="{ minRows: 5, maxRows: 10}"
+                        placeholder="本文"
+                        v-model="form.content"
+                    ></el-input>
 
+                </el-form-item>
+                <el-form-item class="center">
+                    <el-button
+                        type="primary"
+                        :disabled="form.name === '' || form.account === '' || form.content === ''"
+                        @click="submitForm('form')"
+                    >
+                        送信
+                    </el-button>
+                </el-form-item>
+            </el-form>
+            <!-- <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfMaxwA9ETS1pvwDSivvW5pTD_DuYbePh-VJ8UYWF6xGbcHPA/viewform?embedded=true" style="width: 80vw; height: 885px;" frameborder="0" marginheight="0" marginwidth="0">読み込んでいます...</iframe> -->
+        </section>
     </article>
 </template>
 
 <script>
+// import line from '@line/bot-sdk'
+const line = require('@line/bot-sdk')
+
 export default {
+    data () {
+        return  {
+            form: {
+                name   : '',
+                account: '',
+                content: ''
+            },
+            rules: {
+                name   : [{ required: true, message: '必須項目', trigger: 'blur' }],
+                account: [{ required: true, message: '必須項目', trigger: 'blur' }],
+                content: [{ required: true, message: '必須項目', trigger: 'blur' }]
+            }
+        }
+    },
     methods: {
         copyToClipboard () {
             const email = document.querySelector('#email-address')
@@ -65,6 +103,36 @@ export default {
                 title   : 'E-mail Address Copied!',
                 type    : 'success',
                 position: 'bottom-right'
+            })
+        },
+        submitForm (formName) {
+            this.$refs[formName].validate((valid) => {
+                if (valid) {
+                    // TODO: expressにうつしてサーバサイドでやる？
+                    const client = new line.Client({
+                        channelAccessToken: 'uT+a71u7DQqGShjX3WkbjbY7miACp5sa+SWNBzVQTcE9u81tAwi1A+5OkkpsCHE0GmRCIf7tdsA1evImtu1ts6PCpsNI5b83DYas8OcG3cqv90C9OaIFW0JBLp+Ys78NVujM6+SG/e6RniQRz09DgAdB04t89/1O/w1cDnyilFU='
+                    })
+
+                    const message = {
+                        type: 'text',
+                        text: '名前\n' + this.form.name + '\nアカウント\n' + this.form.account + '\n本文\n' + this.form.content
+                    }
+
+                    client.pushMessage('massy7124', message)
+                        .then(() => {
+                            this.$message({
+                                message: '送信完了しました',
+                                type   : 'success'
+                            })
+                        })
+                        .catch((err) => {
+                            this.$message.error('送信に失敗しました。もう一度おためしください')
+                            console.log(err)
+                        })
+                }
+                else {
+                    return false
+                }
             })
         }
     },
@@ -93,5 +161,10 @@ export default {
 
 #icon-email {
     font-size: 4em;
+}
+
+.form-direct {
+    margin: 0 auto;
+    max-width: 500px;
 }
 </style>

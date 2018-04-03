@@ -7,13 +7,25 @@
                         <div class="blog-title">
                             {{ blog.title }}
                         </div>
-                        <div class="hidden-xs-only blog-date" style="position:absolute; top:0px; right:36px;">{{ new Date(blog.createdAt).toLocaleString().slice(0, -3) }}</div>
+                        <div class="hidden-xs-only blog-date" style="position:absolute; top:0px; right:36px;"><el-tag v-if="blog.tags[0]" size="medium">  {{ blog.tags[0] }}</el-tag>{{ new Date(blog.createdAt).toLocaleString().slice(0, -3) }}</div>
                     </div>
                 </template>
                 <el-tag v-for="(tag, index) in blog.tags" :key="index" size="medium">{{ tag }}</el-tag>
-                <div class="content" v-html="blog.content"></div>
+                <div v-highlightjs class="content" v-html="blog.content"></div>
                 <br>
                 <div class="hidden-sm-and-up blog-date">{{new Date(blog.createdAt).toLocaleString().slice(0, -3)}}</div>
+
+                <el-button type="primary" icon="el-icon-share" size="small" @click="copyToClipboard(blog._id)">Share</el-button>
+
+                <el-button
+                    v-if="$store.state.authUser && $store.state.authUser.role === 'admin'"
+                    type="primary"
+                    size="small"
+                    class="fa fa-edit"
+                    @click="routingUpdateBlog(currentPage, blog._id)"
+                >
+                    編集
+                </el-button>
             </el-collapse-item>
         </el-collapse>
 
@@ -27,22 +39,25 @@
             >
             </el-pagination>
         </div>
-        <nuxt-link class="fa fa-edit" to="/blog/create">Blog作成</nuxt-link>
+
+        <nuxt-link v-if="$store.state.authUser && $store.state.authUser.role === 'admin'" class="fa fa-edit" to="/blog/create">Blog作成</nuxt-link>
     </article>
 </template>
 
 <script>
 import axios from '~/plugins/axios'
+import 'quill/dist/quill.core.css'
+import 'quill/dist/quill.snow.css'
 
 export default {
+    validate ({params}) {
+        return /^\d+$/.test(params.page) && params.page >= 1 && (params.id === void 0 || /^[a-z0-9]+$/.test(params.id))
+    },
     data () {
         return {
             total      : 0,
             currentPage: 1
         }
-    },
-    validate ({params}) {
-        return /^\d+$/.test(params.page) && params.page >= 1 && (params.id === void 0 || /^[a-z0-9]+$/.test(params.id))
     },
     created () {
         this.currentPage = Number(this.$route.params.page)
@@ -66,6 +81,32 @@ export default {
     methods: {
         currentPageChange (val) {
             this.$router.push({path: '/blog/' + val})
+        },
+        copyToClipboard (id) {
+            const temp = document.createElement('div')
+            temp.appendChild(document.createElement('pre')).textContent = 'http://localhost:3000/blog/' + this.currentPage + '/' + id
+
+            const s = temp.style
+            s.position = 'fixed'
+            s.left = '1000%'
+
+            document.body.appendChild(temp)
+            document.getSelection().selectAllChildren(temp)
+
+            const result = document.execCommand('copy')
+
+            if (result) {
+                this.$message({
+                    message: 'シェアリンクをコピーしました',
+                    type   : 'success'
+                })
+            }
+            else {
+                this.$message.error('リンクコピーエラー')
+            }
+        },
+        routingUpdateBlog (currentPage, id) {
+            this.$router.push({path: '/blog/' + currentPage + '/' + id + '/update'})
         }
     },
     transition (to, from) {
@@ -92,13 +133,24 @@ export default {
 .blog-title {
     font-size: 1.5em;
     font-weight: bold;
-
-    width: 60vw;
+    width: 50vw;
+    max-width: 500px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
 }
+@media (max-width:767px) {
+    .blog-title {
+        width: 70vw;
+    }
+
+}
 .blog-date {
     font-style: italic;
+}
+.content /deep/ img {
+    max-width: 80%;
+    display: flex;
+    margin: 0 auto;
 }
 </style>
