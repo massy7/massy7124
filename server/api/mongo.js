@@ -1,11 +1,16 @@
 import mongodb from 'mongodb'
 import assert from 'assert'
 
+let config = require('../../config/development.json')
+if (process.env.NODE_ENV === 'production') {
+    config = require('../../config/production.json')
+}
+
 let db
 let MongoClient = mongodb.MongoClient
 
 // Connection URL
-let url = 'mongodb://127.0.0.1:27017/portfolio'
+let url = config.mongodb.dsn + config.mongodb.database
 
 // Use connect method to connect to the Server
 MongoClient.connect(url, function (err, mongo) {

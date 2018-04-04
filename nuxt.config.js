@@ -1,4 +1,9 @@
 const webpack = require('webpack')
+let config = require('./config/development.json')
+if (process.env.NODE_ENV === 'production') {
+    config = require('./config/production.json')
+}
+
 module.exports = {
     /*
     ** Headers of the page
@@ -8,11 +13,11 @@ module.exports = {
         meta : [
             { charset: 'utf-8' },
             { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-            { hid: 'description', name: 'description', content: 'massy7124のポートフォリオサイトです。ブログも書いていますのでご覧     ください！' },
+            { hid: 'description', name: 'description', content: 'massy7124のポートフォリオサイトです。ブログも書いていますのでご覧ください！' },
 
             { name: 'twitter:site', content: 'summary' },
             { name: 'twitter:card', content: '@massy7124' },
-            { property: 'og:url', content: process.env.BASE_URL || 'http://localhost:3000' },
+            { property: 'og:url', content: config.server.baseUrl },
             { property: 'og:title', content: 'massy7124\'s site' },
             { property: 'og:description', content: 'massy7124\'s portfolio site' },
             { property: 'og:image', content: 'http://localhost:3000' }
@@ -27,7 +32,7 @@ module.exports = {
         '@nuxtjs/google-analytics'
     ],
     'google-analytics': {
-        id: 'UA-00000-0'
+        id: config.google.analytics.trackingId
     },
     plugins: [
         '~plugins/element-ui',
@@ -48,7 +53,7 @@ module.exports = {
     ** env
     */
     env: {
-        baseUrl: process.env.BASE_URL || 'http://localhost:3000'
+        baseUrl: config.server.baseUrl
     },
     /*
     ** Add axios globally
@@ -69,9 +74,9 @@ module.exports = {
         /*
         ** Run ESLINT on save
         */
-        extend (config, ctx) {
+        extend (conf, ctx) {
             if (ctx.isClient) {
-                config.module.rules.push({
+                conf.module.rules.push({
                     enforce: 'pre',
                     test   : /\.(js|vue)$/,
                     loader : 'eslint-loader',
