@@ -1,20 +1,42 @@
 import express from 'express'
 import { Nuxt, Builder } from 'nuxt'
+// postのとき値を受け取るために必要(req.body)
+import bodyParser from 'body-parser'
+import session from 'express-session'
+// 認証
+import passport from 'passport'
 
 import api from './api'
-const history = require('connect-history-api-fallback')
+// const history = require('connect-history-api-fallback')
 
 const app = express()
 const host = process.env.HOST || '127.0.0.1'
 const port = process.env.PORT || 3000
 
-history({
-    index: '/index'
-})
-// vue-router history
-app.use(history())
+// history({
+//     index: '/'
+// })
+// // vue-router history
+// app.use(history())
 
 app.set('port', port)
+
+// postのとき値を受け取るために必要(req.body)
+app.use(bodyParser.urlencoded({
+    limit   : '50mb',
+    extended: true
+}))
+app.use(bodyParser.json({limit: '50mb'}))
+
+app.use(session({
+    secret           : 'super-secret-key',
+    resave           : false,
+    saveUninitialized: false,
+    cookie           : { maxAge: 1000 * 60 * 60 }
+}))
+
+app.use(passport.initialize())
+app.use(passport.session())
 
 // Import API Routes
 app.use('/api', api)
@@ -28,8 +50,8 @@ const nuxt = new Nuxt(config)
 
 // Build only in dev mode
 if (config.dev) {
-  const builder = new Builder(nuxt)
-  builder.build()
+    const builder = new Builder(nuxt)
+    builder.build()
 }
 
 // Give nuxt middleware to express
