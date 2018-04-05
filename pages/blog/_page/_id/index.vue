@@ -41,7 +41,7 @@
         </div>
 
         <nuxt-link v-if="$store.state.authUser && $store.state.authUser.role === 'admin'" class="fa fa-edit" to="/blog/create">Blog作成</nuxt-link>
-        
+
         <my-scroll-top-button/>
     </article>
 </template>
@@ -52,10 +52,7 @@ import 'quill/dist/quill.core.css'
 import 'quill/dist/quill.snow.css'
 import MyScrollTopButton from '~/components/common/TheScrollTopButton.vue'
 
-let config = require('../../../../config/development.json')
-if (process.env.NODE_ENV === 'production') {
-    config = require('../../../../config/production.json')
-}
+let config = require('../../../../config/production.json')
 
 export default {
     components: {
