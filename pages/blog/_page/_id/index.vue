@@ -41,6 +41,8 @@
         </div>
 
         <nuxt-link v-if="$store.state.authUser && $store.state.authUser.role === 'admin'" class="fa fa-edit" to="/blog/create">Blog作成</nuxt-link>
+        
+        <my-scroll-top-button/>
     </article>
 </template>
 
@@ -48,8 +50,17 @@
 import axios from '~/plugins/axios'
 import 'quill/dist/quill.core.css'
 import 'quill/dist/quill.snow.css'
+import MyScrollTopButton from '~/components/common/TheScrollTopButton.vue'
+
+let config = require('../../../../config/development.json')
+if (process.env.NODE_ENV === 'production') {
+    config = require('../../../../config/production.json')
+}
 
 export default {
+    components: {
+        MyScrollTopButton
+    },
     validate ({params}) {
         return /^\d+$/.test(params.page) && params.page >= 1 && (params.id === void 0 || /^[a-z0-9]+$/.test(params.id))
     },
@@ -84,7 +95,7 @@ export default {
         },
         copyToClipboard (id) {
             const temp = document.createElement('div')
-            temp.appendChild(document.createElement('pre')).textContent = 'http://localhost:3000/blog/' + this.currentPage + '/' + id
+            temp.appendChild(document.createElement('pre')).textContent = config.server.baseUrl + '/blog/' + this.currentPage + '/' + id
 
             const s = temp.style
             s.position = 'fixed'

@@ -1,8 +1,8 @@
 <template>
     <footer class="bg-color-main fixed-bottom">
         <my-navtab class="hidden-sm-and-up"/>
-        <span v-if="$store.state.authUser">SignIn : {{ $store.state.authUser.username }}<br></span>
-        <nuxt-link class="copyright" to="/auth"><span class="fa fa-copyright"></span> 2018 Koki Mashiko</nuxt-link>
+        <nuxt-link v-if="$store.state.authUser" to="/auth">SignIn : {{ $store.state.authUser.username }}</nuxt-link>
+        <nuxt-link class="hidden-xs-only copyright" to="/auth"><span class="fa fa-copyright"></span> 2018 Koki Mashiko</nuxt-link>
     </footer>
 </template>
 
@@ -21,6 +21,10 @@ footer {
     width: 100vw;
     text-align: center;
     color: white;
+
+    a {
+        color: white;
+    }
 }
 
 .copyright {

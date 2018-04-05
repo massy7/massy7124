@@ -4,28 +4,20 @@ export const state = () => ({
 
 export const mutations = {
     /**
-     * blogの追加
-     * @param {number} id ブログ番号
+     * blogをストアに
+     * @param {number} id
+     * @param {string} title
+     * @param {array}  tags
+     * @param {string} content
+     * @param {date}   createdAt
      */
-    add (state, id, filePath, title, date, tags, content) {
-        if (!state.blogs[id]) {
-            state.blogs.push({
-                filePath : filePath,
-                title    : title,
-                date     : date,
-                tags     : tags,
-                content  : content,
-                deletedAt: null
-            })
-        }
-    },
-    delete (state, blogId) {
-        state.blogs[blogId].deleted = new Date()
-    },
-    addTag (state, blogId, tags) {
-        let newTagIds = new Set()
-        newTagIds.add(state.blogs[blogId].tags)
-        newTagIds.add(tags)
-        state.blogs[blogId].tags = [...new Set(tags)]
+    add (state, id, title, tags, content, createdAt) {
+        state.blogs.push({
+            _id      : id,
+            title    : title,
+            tags     : tags,
+            content  : content,
+            createdAt: createdAt
+        })
     }
 }

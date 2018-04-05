@@ -13,6 +13,8 @@ dist
 # Backpack build
 build
 
+sw.*
+
 data/*
 
 .env
