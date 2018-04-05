@@ -68,7 +68,7 @@
                 </el-form-item>
             </el-form> -->
             <div class="center">
-                <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfMaxwA9ETS1pvwDSivvW5pTD_DuYbePh-VJ8UYWF6xGbcHPA/viewform?embedded=true" style="width: 80vw; height: 860px;" frameborder="0" marginheight="0" marginwidth="0">読み込んでいます...</iframe>
+                <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfMaxwA9ETS1pvwDSivvW5pTD_DuYbePh-VJ8UYWF6xGbcHPA/viewform?embedded=true" style="width: 80vw; max-width: 660px; height: 860px;" frameborder="0" marginheight="0" marginwidth="0">読み込んでいます...</iframe>
             </div>
         </section>
     </article>
