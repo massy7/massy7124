@@ -28,16 +28,22 @@ module.exports = {
     },
     modules: [
         // '@nuxtjs/vuetify'
+        '@nuxtjs/pwa',
         '@nuxtjs/font-awesome',
         '@nuxtjs/google-analytics'
     ],
     'google-analytics': {
         id: config.google.analytics.trackingId
     },
+    manifest: {
+        name: 'Massy7124\'s site',
+        lang: 'ja'
+    },
     plugins: [
         '~plugins/element-ui',
         '~plugins/highlight',
         '~plugins/quill',
+        // '~plugins/scrollTo',
         { src: '~plugins/persisted-state.js', ssr: false }
     ],
     /*

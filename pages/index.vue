@@ -4,16 +4,18 @@
             <a id="profile"></a>
             <h1>Profile</h1>
             <div class="grid grid-profile">
-            	<div class="profile-image">
+            	<div class="profile-image center-margin">
                     <img class="icon-profile" src="/img/massy7124.jpg" alt="massy7124">
                 </div>
-            	<div class="name">
+            	<div class="name center">
                     Koki Mashiko
                 </div>
             	<div class="detail">
                     益子滉輝と申します。<br>
-                    木更津工業高等専門学校 制御・情報システム工学専攻科を修了し、2017年卒で社会人に。<br>
-                    Web Engineerとしてバックエンド、フロントエンドともに設計・実装を行っています。<br>
+                    木更津高専に在学中にC言語などを学び、独学でPHP、JavaScript、HTMLを学びました。<br>
+                    現在はWeb Developerとしてフロントエンド、サーバーサイドともに設計・実装を行っています。<br>
+                    PHP、JavaScriptをよく使用しており、SPAやPWAを勉強中。<br>
+                    今後は学習した内容を発表できる暗い自信をつけたいと思っています。
                 </div>
             </div>
         </section>
@@ -90,7 +92,7 @@
                 </div>
                 <div class="">
                     <a href="https://isocpp.org/" title="C++" target="_blank">
-                        <img class="bland-logo" src="/img/logo/C++.svg" alt="C++">
+                        <img class="bland-logo" src="/img/logo/cpp.svg" alt="C++">
                     </a>
                 </div>
             	<div class="">
@@ -162,7 +164,20 @@ export default {
     .detail {
         grid-area: detail;
     }
+}
 
+@media (max-width:767px) {
+    .grid-profile {
+        grid-template-rows: 120px 40px 1fr;
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            "profile-image"
+            "name"
+            "detail";
+    }
+    .profile-image {
+        max-width: 120px;
+    }
 }
 
 </style>

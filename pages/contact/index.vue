@@ -44,12 +44,9 @@
 
         <section>
             <h1>Form</h1>
-            <el-form ref="form" :rules="rules" label-position="top" :model="form" class="form-direct">
-                <el-form-item label="お名前" prop="name">
-                    <el-input placeholder="お名前" v-model="form.name"></el-input>
-                </el-form-item>
+            <!-- <el-form ref="form" :rules="rules" label-position="top" :model="form" class="form-direct">
                 <el-form-item label="アカウント" prop="name">
-                    <el-input placeholder="アカウント" v-model="form.account"></el-input>
+                    <el-input placeholder="本名、Twitter、Facebookなど" v-model="form.account"></el-input>
                 </el-form-item>
                 <el-form-item label="本文" prop="content">
                     <el-input
@@ -69,8 +66,10 @@
                         送信
                     </el-button>
                 </el-form-item>
-            </el-form>
-            <!-- <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfMaxwA9ETS1pvwDSivvW5pTD_DuYbePh-VJ8UYWF6xGbcHPA/viewform?embedded=true" style="width: 80vw; height: 885px;" frameborder="0" marginheight="0" marginwidth="0">読み込んでいます...</iframe> -->
+            </el-form> -->
+            <div class="center">
+                <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfMaxwA9ETS1pvwDSivvW5pTD_DuYbePh-VJ8UYWF6xGbcHPA/viewform?embedded=true" style="width: 80vw; height: 860px;" frameborder="0" marginheight="0" marginwidth="0">読み込んでいます...</iframe>
+            </div>
         </section>
     </article>
 </template>
@@ -83,12 +82,10 @@ export default {
     data () {
         return  {
             form: {
-                name   : '',
                 account: '',
                 content: ''
             },
             rules: {
-                name   : [{ required: true, message: '必須項目', trigger: 'blur' }],
                 account: [{ required: true, message: '必須項目', trigger: 'blur' }],
                 content: [{ required: true, message: '必須項目', trigger: 'blur' }]
             }
@@ -115,7 +112,7 @@ export default {
 
                     const message = {
                         type: 'text',
-                        text: '名前\n' + this.form.name + '\nアカウント\n' + this.form.account + '\n本文\n' + this.form.content
+                        text: 'アカウント\n' + this.form.account + '\n本文\n' + this.form.content
                     }
 
                     client.pushMessage('massy7124', message)
