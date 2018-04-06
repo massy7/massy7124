@@ -1,26 +1,27 @@
 const webpack = require('webpack')
-let config = require('./config/development.json')
-if (process.env.NODE_ENV === 'production') {
-    config = require('./config/production.json')
-}
+let config = require('./config/production.json')
 
 module.exports = {
     /*
     ** Headers of the page
     */
     head: {
-        title: 'massy7124\'s site',
+        title: 'Massy7124\'s Web Site',
         meta : [
             { charset: 'utf-8' },
             { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-            { hid: 'description', name: 'description', content: 'massy7124のポートフォリオサイトです。ブログも書いていますのでご覧ください！' },
+            { hid: 'description', name: 'description', content: 'Massy7124のポートフォリオサイトです。ブログも書いていますのでご覧ください！' },
 
             { name: 'twitter:site', content: 'summary' },
             { name: 'twitter:card', content: '@massy7124' },
+            { name: 'twitter:description', content: 'Massy7124のポートフォリオサイトです。' },
+            { name: 'twitter:image:src', content: '' },
             { property: 'og:url', content: config.server.baseUrl },
             { property: 'og:title', content: 'massy7124\'s site' },
+            { property: 'og:type', content: 'website' },
             { property: 'og:description', content: 'massy7124\'s portfolio site' },
-            { property: 'og:image', content: 'http://localhost:3000' }
+            { property: 'og:image', content: 'http://massy7124.me/img/massy7124.jpg' },
+            { property: 'fb:admins', content: '100010745989607' }
         ],
         link: [
             { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
@@ -36,14 +37,23 @@ module.exports = {
         id: config.google.analytics.trackingId
     },
     manifest: {
-        name: 'Massy7124\'s site',
-        lang: 'ja'
+        name            : 'Massy7124\'s site',
+        short_name      : 'Massy7124',
+        title           : 'Massy7124\'s site',
+        'og:title'      : 'Massy7124\'s site',
+        description     : 'Massy7124\'s site',
+        'og:description': 'Massy7124\'s site',
+        lang            : 'ja',
+        theme_color     : 'deepskyblue',
+        background_color: 'deepskyblue'
+    },
+    workbox: {
+        dev: true
     },
     plugins: [
         '~plugins/element-ui',
         '~plugins/highlight',
         '~plugins/quill',
-        // '~plugins/scrollTo',
         { src: '~plugins/persisted-state.js', ssr: false }
     ],
     /*
