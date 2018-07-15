@@ -27,6 +27,7 @@
     "express": "^4.16.3",
     "express-session": "^1.15.6",
     "highlight.js": "^9.12.0",
+    "letsencrypt-express": "^2.0.7",
     "mongo-express": "^0.46.0",
     "mongodb": "^3.0.4",
     "node-sass": "^4.7.2",
