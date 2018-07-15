@@ -87,6 +87,12 @@ module.exports = {
                 'Quill'       : 'quill/dist/quill.js'
             })
         ],
+        uglify: {
+            uglifyOptions: {
+                compress: false
+            },
+            cache: '/path/to/cache/dir'
+        },
         /*
         ** Run ESLINT on save
         */
