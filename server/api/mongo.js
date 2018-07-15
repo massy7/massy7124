@@ -13,7 +13,7 @@ let MongoClient = mongodb.MongoClient
 let url = config.mongodb.dsn + config.mongodb.database
 
 // Use connect method to connect to the Server
-MongoClient.connect(url, function (err, mongo) {
+MongoClient.connect(url, {useNewUrlParser: true}, function (err, mongo) {
     assert.equal(null, err)
     console.log('Connected correctly to server')
     db = mongo.db('portfolio')
