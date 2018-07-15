@@ -1,0 +1,24 @@
+version: '3'
+services:
+    massy7124:
+        build:
+            context: .
+            dockerfile: Dockerfile
+        container_name: "massy7124"
+        volumes:
+            - ../../massy7124:/usr/src/app
+        tty: true
+        ports:
+            - "3000:3000"
+        links:
+            - mongo
+        environment:
+            VIRTUAL_HOST: massy7124.local.jp
+
+    mongo:
+        container_name: mongo
+        image: mongo
+        volumes:
+            - ./data:/data/db
+        ports:
+            - "27017:27017"

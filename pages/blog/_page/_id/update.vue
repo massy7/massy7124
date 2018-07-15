@@ -139,7 +139,7 @@ export default {
                 if (valid) {
                     const content = this.form.content.replace(/<pre class="ql-syntax" spellcheck="false">/g, '<pre><code>').replace(/<\/pre>/g, '</code>')
                     axios
-                        .post('/api/blog/update' + this.form._id, {
+                        .post('/api/blog/update/' + this.form._id, {
                             title    : this.form.title,
                             tags     : this.form.tags.map(tag => tag.name),
                             content  : content,

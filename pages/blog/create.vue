@@ -117,7 +117,7 @@ export default {
         submitForm (formName) {
             this.$refs[formName].validate((valid) => {
                 if (valid) {
-                    const content = this.form.content.replace(/<pre class="ql-syntax" spellcheck="false">/g, '<pre><code>').replace(/<\/pre>/g, '</code>')
+                    const content = this.form.content.replace(/<pre class="ql-syntax" spellcheck="false">/g, '<pre><code>').replace(/<\/pre>/g, '</code></pre>')
                     axios
                         .post('/api/blog/insert', {
                             title    : this.form.title,

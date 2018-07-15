@@ -120,6 +120,11 @@
                         <img class="bland-logo" src="/img/logo/amazon-ec2.svg" alt="Amazon EC2">
                     </a>
                 </div>
+                <div class="">
+                    <a href="https://code.visualstudio.com/" title="Visual Studio Code" target="_blank">
+                        <img class="bland-logo" src="/img/logo/visual-studio-code.svg" alt="Visual Studio Code">
+                    </a>
+                </div>
             	<div class="">
                     <a href="https://atom.io/" title="Atom" target="_blank">
                         <img class="bland-logo" src="/img/logo/atom-editor.svg" alt="Atom">

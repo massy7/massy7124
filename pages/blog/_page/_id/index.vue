@@ -137,7 +137,10 @@ export default {
 <style lang="scss" scoped>
 .blog {
     text-align: left;
+    word-wrap : break-word;
+    overflow-wrap : break-word;
 }
+
 .blog-title {
     font-size: 1.5em;
     font-weight: bold;
@@ -147,18 +150,23 @@ export default {
     overflow: hidden;
     text-overflow: ellipsis;
 }
+
 @media (max-width:767px) {
     .blog-title {
         width: 70vw;
     }
-
 }
+
 .blog-date {
     font-style: italic;
 }
-.content /deep/ img {
-    max-width: 80%;
-    display: flex;
-    margin: 0 auto;
+
+.content {
+    word-wrap: break-all;
+    /deep/ img {
+        max-width: 80%;
+        display: flex;
+        margin: 0 auto;
+    }
 }
 </style>

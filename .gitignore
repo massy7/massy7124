@@ -18,3 +18,4 @@ sw.*
 data/*
 
 .env
+docker/data

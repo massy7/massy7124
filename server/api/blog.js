@@ -55,14 +55,14 @@ router.post('/blog/insert', function (req, res) {
 })
 
 router.get('/blog/update/:id', function (req, res) {
-    collection(collectionName).findOneAndUpdate({ _id: new ObjectID(req.params.id) }, req.body, {}, function (err, r) {
+    collection(collectionName).updateOne({ '_id': ObjectID(req.params.id) }, req.body, {}, function (err, r) {
         assert.equal(null, err)
         res.send(r)
     })
 })
 
 router.get('/blog/delete/:id', function (req, res) {
-    collection(collectionName).findOneAndDelete({ _id: new ObjectID(req.params.id) }, {}, function (err, r) {
+    collection(collectionName).findOneAndDelete({ '_id': ObjectID(req.params.id) }, {}, function (err, r) {
         assert.equal(null, err)
         res.send(r)
     })
