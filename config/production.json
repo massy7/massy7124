@@ -1,7 +1,7 @@
 {
     "server": {
         "baseUrl": "http://massy7124.me",
-        "port": 3000
+        "port": 80
     },
 
     "db": {
@@ -14,7 +14,7 @@
     },
 
     "mongodb": {
-        "dsn": "mongodb://127.0.0.1:27017/",
+        "dsn": "mongodb://0.0.0.0:27017/",
         "database": "portfolio"
     },
 
