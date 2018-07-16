@@ -13,6 +13,13 @@ const app = express()
 const host = process.env.HOST || '0.0.0.0'
 const port = process.env.PORT || 3000
 
+// letsencrypt-express用の初期化コード開始
+var LEX = require('greenlock-express')
+
+// 以下の2行は環境に合わせて変更して下さい！
+var DOMAIN = 'massy7124.me'
+var EMAIL = 'massy7124@gmail.com'
+
 // history({
 //     index: '/'
 // })
@@ -59,4 +66,12 @@ app.use(nuxt.render)
 
 // Listen the server
 app.listen(port, host)
+LEX.create({
+    server        : 'staging',
+    email         : EMAIL,
+    agreeTos      : true,
+    approveDomains: [DOMAIN],
+    app           : app
+}).listen(80, 443)
+
 console.log('Server listening on ' + host + ':' + port) // eslint-disable-line no-console
